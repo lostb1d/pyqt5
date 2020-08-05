@@ -51,8 +51,6 @@ class Window(QDialog):
     def setProgressval(self, val):
         self.progressbar.setValue(val)
         
-    
-
 if __name__ == "__main__":
     App = QApplication(sys.argv)
     window = Window()
