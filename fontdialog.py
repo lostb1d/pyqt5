@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QLabel, QVBoxLayout, QDial, QMenuBar, QAction, QToolBar , QTextEdit, QFontDialog
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QLabel, QVBoxLayout, QDial, QMenuBar, QAction, QToolBar , QTextEdit, QFontDialog, QColorDialog
 import sys
 from PyQt5 import QtGui
 from PyQt5.QtGui import QIcon
@@ -47,6 +47,10 @@ class Window(QMainWindow):
         fontAction.triggered.connect(self.fontDialof)
         viewMenu.addAction(fontAction)
 
+        colorAction = QAction(QIcon("img/color.png"),"Font Color", self)
+        colorAction.triggered.connect(self.colorDialog)
+        viewMenu.addAction(colorAction)
+
         saveAction = QAction(QIcon("img/save.png"),"Save",self)
         saveAction.setShortcut("Ctrl+S")
         fileMenu.addAction(saveAction)
@@ -63,6 +67,7 @@ class Window(QMainWindow):
         toolbar.addAction(saveAction)
         toolbar.addAction(exitAction)
         toolbar.addAction(fontAction)
+        toolbar.addAction(colorAction)
         
 
 
@@ -78,6 +83,10 @@ class Window(QMainWindow):
 
         if ok:
             self.textEdit.setFont(font)
+
+    def colorDialog(self):
+        color = QColorDialog.getColor()
+        self.textEdit.setTextColor(color)
 
 if __name__ == "__main__":
     App = QApplication(sys.argv)
