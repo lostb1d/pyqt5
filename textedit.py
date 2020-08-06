@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QLabel, QVBoxLayout, QDial, QMenuBar, QAction, QToolBar
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QLabel, QVBoxLayout, QDial, QMenuBar, QAction, QToolBar , QTextEdit
 import sys
 from PyQt5 import QtGui
 from PyQt5.QtGui import QIcon
@@ -8,7 +8,7 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.title="Menu"
+        self.title="Text Edit"
         self.top=100
         self.left=100
         self.width=400
@@ -19,6 +19,7 @@ class Window(QMainWindow):
         self.setWindowIcon(QtGui.QIcon(self.iconName))
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.CreateMenu()
+        self.createEditor()
         self.show()
 
     def CreateMenu(self):
@@ -61,6 +62,10 @@ class Window(QMainWindow):
 
     def exitWindow(self):
         self.close()
+
+    def createEditor(self):
+        self.textEdit = QTextEdit(self)
+        self.setCentralWidget(self.textEdit)
 
 if __name__ == "__main__":
     App = QApplication(sys.argv)
